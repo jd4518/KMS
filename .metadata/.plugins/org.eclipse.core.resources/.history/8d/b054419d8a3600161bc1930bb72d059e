@@ -1,0 +1,19 @@
+
+app.config(function($routeProvider) {
+	$routeProvider.when('/boardDetail/:BOARD_NO:categoryNo', {
+		templateUrl : 'boardDetail.do',
+		controller : 'boardDetailCtrl'
+	});
+});
+
+app.controller('boardDetailCtrl',function($scope, $http, $routeParams){
+
+	$scope.board = $routeParams.BOARD_NO;
+	$scope.categoryNo = $routeParams.categoryNo;
+	
+	$scope.boardDetail = function(){
+		var ajax = $http.get("/Project/board/boardDetail/"+$routeParams.BOARD_NO+$routeParams.categoryNo+"x.do",{
+		});
+	}
+		
+});

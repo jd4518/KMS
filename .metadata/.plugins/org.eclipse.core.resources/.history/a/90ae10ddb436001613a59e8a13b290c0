@@ -1,0 +1,20 @@
+package com.project.comment.service;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.project.board.service.BoardListService;
+import com.project.comment.dao.CommentDao;
+
+public class CommentListService {
+
+static Log log = LogFactory.getLog(BoardListService.class);
+	
+	@Autowired
+	private CommentDao commentDao;
+	
+	public List<Comment>
+	
+	
+}

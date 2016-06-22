@@ -1,0 +1,43 @@
+1466380221095	Rename resource 'noticeBoardList.jsp'
+1466380371000	Rename resource 'noticeBoardController.js'
+1466381639432	Rename resource 'boardController.js'
+1466381734431	Copy file
+1466381817487	Copy file
+1466386903399	Move compilation unit
+1466386907462	Move compilation unit
+1466386928949	Copy compilation unit
+1466387051271	Delete element
+1466387061635	Rename package 'com.project.controller'
+1466387077863	Rename package 'com.project.dao'
+1466387187085	Move compilation unit
+1466387189498	Move compilation unit
+1466387194425	Move compilation unit
+1466387197215	Move compilation unit
+1466387200201	Move compilation unit
+1466387203497	Move compilation unit
+1466387217534	Rename package 'com.project.model'
+1466387286228	Move compilation unit
+1466387300647	Move compilation unit
+1466387309607	Move compilation unit
+1466387314176	Move compilation unit
+1466387319193	Move compilation unit
+1466387322235	Move compilation unit
+1466387325373	Move compilation unit
+1466387356972	Rename package 'com.project.service'
+1466387396121	Move compilation unit
+1466387399319	Move compilation unit
+1466387402814	Move compilation unit
+1466388172072	Rename type 'BoardService'
+1466388438898	Copy compilation unit
+1466399915392	Delete element
+1466405991659	Rename compilation unit 'CommentService.java'
+1466406246789	Copy file
+1466412034363	Copy file
+1466484509540	Rename type 'MemberController'
+1466484548172	Rename type 'MemberJoinController'
+1466484756471	Rename type 'MemberService'
+1466484785577	Copy compilation unit
+1466492718341	Copy compilation unit
+1466492735627	Rename compilation unit 'MainController.java'
+1466555066713	Rename type 'Users'
+1466556249027	Move compilation unit

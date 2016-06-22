@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.member">
+
+<insert id="memberAdd" parameterType="Member">
+insert into member(
+	member_no,
+	member_name,
+	member_id,
+	member_password,
+	member_email
+)
+values
+(
+	seq_member_member_no.nextval,
+	#{memberName, jdbcType=VARCHAR},
+	#{memberId, jdbcType=VARCHAR},
+	#{memberPassword, jdbcType=VARCHAR},
+	#{memberEmail, jdbcType=VARCHAR}
+)
+
+</insert>
+
+<select id="memberDetailSelect" parameterType="String" resultType="Member">
+	select
+		  member_id,
+		  member_password,
+		  authority
+	from
+		member
+	where member_id = #{memberName}
+</select>
+
+</mapper>

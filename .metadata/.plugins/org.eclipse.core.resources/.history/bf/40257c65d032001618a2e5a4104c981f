@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.board">
+	
+<select id="selectBoardList" parameterType="com.project.util.Pagination" resultType="java.util.HashMap">
+select * 
+from
+	(
+	select a.*, rownum rn from
+		(
+		select
+			b.board_no,
+			b.menu_no,
+			b.category_no,
+			b.board_title,
+			b.board_content,
+			b.board_complete,
+			b.board_regdate,
+			b.board_flag,
+			b.member_no,
+			m.member_id,
+			m.member_name
+		from
+			board b,
+			member m
+		where
+			b.member_no = m.member_no
+		and
+			b.category_no = #{categoryNo} order by b.board_no desc) a
+		)
+	where rn between #{start} and #{end} order by rn desc
+</select>
+<select id="selectBoardCount" parameterType="int" resultType="int">
+	select 
+		count(*) 
+	from 
+		board 
+	where
+		category_no = #{categoryNo}
+</select>
+
+</mapper>

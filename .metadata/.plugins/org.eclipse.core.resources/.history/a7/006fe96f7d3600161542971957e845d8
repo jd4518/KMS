@@ -1,0 +1,13 @@
+
+app.config(function($routeProvider) {
+	$routeProvider.when('/boardDetail/:CATEGORY_NO', {
+		templateUrl : 'boardDetail.do',
+		controller : 'boardDetailCtrl'
+	});
+});
+
+app.controller('boardDetailCtrl',function($scope, $http, $routeParams){
+
+	
+		
+});

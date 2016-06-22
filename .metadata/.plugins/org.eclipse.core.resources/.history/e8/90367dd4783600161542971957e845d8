@@ -1,0 +1,70 @@
+package com.project.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.project.model.Board;
+import com.project.service.BoardService;
+import com.project.service.CategoryService;
+import com.project.service.MenuService;
+import com.project.util.Pagination;
+
+@Controller
+@RequestMapping(value = "/board")
+public class BoardController {
+
+	@Autowired
+	MenuService menuService;
+
+	@Autowired
+	CategoryService categoryService;
+	
+	@Autowired
+	BoardService boardService;
+
+	@RequestMapping(value = "/boardMain.do")
+	public String getBoardMainView() {
+
+		return "board/boardMain";
+	}
+
+	@RequestMapping(value = "/bMain.do")
+	public String getBMainView() {
+
+		return "board/bMain";
+	}
+
+	@RequestMapping(value = "/boardList.do")
+	public String getNoticeBoardListView() {
+
+		return "board/noticeBoardList";
+	}
+
+	@RequestMapping(value = "/menu.do", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getMenu() {
+		 System.out.println("menu");
+		Map<String, Object> map = menuService.getMenu();
+
+		return map;
+	}
+
+	  @RequestMapping(value="/noticeBoardGet/{CATEOGRY_NO:[0-9]+}{pageNo:[0-9]+}x.do",method=RequestMethod.GET)
+	   @ResponseBody
+	   public Map<String, Object> getBoard(@PathVariable int CATEOGRY_NO,@PathVariable int pageNo){
+	      System.out.println("catecon"+CATEOGRY_NO);
+	      System.out.println("page"+pageNo);
+	      Map<String, Object> map = boardService.getBoardList(CATEOGRY_NO,pageNo);
+	      
+	      return map;
+	   }
+
+}

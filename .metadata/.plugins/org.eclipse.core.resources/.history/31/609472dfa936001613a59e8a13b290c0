@@ -1,0 +1,94 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div align="center">
+   <table class="table">
+      <thead class="htable">
+      <tr data-ng-repeat="b in board">
+      	<th colspan="6" style="font-size:50px; font-style: italic; ">{{b.CATEGORY_NAME}}</th>
+      </tr>
+         <tr data-ng-repeat="b in board">
+         	 <th>작성자</th>
+            <td>{{b.MEMBER_NAME}}</td>
+            <th>제목</th>
+            <td>{{b.BOARD_TITLE}}</td>
+            <th>등록일</th>
+            <td>{{b.BOARD_REGDATE | date : "medium"}}</td>
+         </tr>
+      </thead>
+      <tbody class="btable">
+         <tr data-ng-repeat="b in board">
+            <td colspan="6">{{b.BOARD_CONTENT}}</td>
+         </tr>
+
+         <c:if test="${!empty listReply }">
+            <tr>
+               <th colspan="10"><span style="float: left;"><strong
+                     style="font-size: 1.2em; padding-right: 7px;">댓글</strong><strong
+                     style="font-size: 1.1em;">haha</strong></span></th>
+            </tr>
+            <c:forEach var="reply" items="${listReply }">
+               <tr>
+                  <th colspan="10">
+                     <div class="row" style="text-align: left;">
+                        <dl>
+                           <div>
+                              <div>
+                                 <span><strong>${reply.memberId }</strong></span><span
+                                    style="font-size: 0.8em;"> (<fmt:formatDate
+                                       value="haha" pattern="yyyy-MM-dd" />)
+                                 </span>
+
+                              </div>
+                           </div>
+                           <div>
+                              <div>
+                                 <span class="test">haha</span>
+                                 <span> <c:if
+                                       test="haha">
+                                       <button class="small button" style="float: right;"
+                                          onclick="javascript:deleteReply('${reply.replyNo}', '${tipBoard.tipBoardNo }')">삭제</button>
+                                    </c:if></span>
+                              </div>
+                           </div>
+                        </dl>
+                     </div>
+                  </th>
+               </tr>
+            </c:forEach>
+         </c:if>
+
+         <tr>
+            <th colspan="10"><c:forEach var="fileInfo"
+                  items="haha">
+                  <span class="fi-download" style="color: #2199e8;"></span>
+                  <a
+                     href="tipBoardDownload.do?no=${tipBoard.tipBoardNo }&fileNo=${fileInfo.fileNo}">${fileInfo.originalFileName }</a>
+                  <c:if test="${fileInfo.fileSize <1024 }">
+                        (1KB)(${fileInfo.fileDownloadCount})
+                     </c:if>
+                  <c:if
+                     test="${fileInfo.fileSize > 1024 && fileInfo.fileSize <= 1048576}">
+                     <fmt:parseNumber var="size" value="${fileInfo.fileSize/1024}"
+                        integerOnly="true" />(${size }KB)(${fileInfo.fileDownloadCount})
+                     </c:if>
+                  <c:if test="${fileInfo.fileSize > 1048576 }">
+                     <fmt:parseNumber var="size" value="${fileInfo.fileSize/1048576}"
+                        integerOnly="true" />(${size }MB)(${fileInfo.fileDownloadCount})
+                     </c:if>
+                  <hr>
+               </c:forEach></th>
+         </tr>
+
+      </tbody>
+   </table>
+</div>
+
+
+</body>
+</html>

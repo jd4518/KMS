@@ -1,0 +1,26 @@
+package com.project.dao;
+
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.project.model.Board;
+import com.project.model.Category;
+import com.project.util.Pagination;
+
+@Repository
+public class BoardDao {
+
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
+	public List<Board> selectBoardList(Pagination page){
+		return sqlSession.selectList("com.project.board.selectBoardList", page);
+	}
+	
+	public int selectBoardCount(int categoryNo){
+		return sqlSession.selectOne("com.project.board.selectCount", categoryNo);
+	}
+}

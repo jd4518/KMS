@@ -1,0 +1,10 @@
+package com.project.comment.model;
+
+public class Comment {
+	private static int replyNo;
+	private static String replyContent;
+	private static int boardNo;
+	private static int menuNo;
+	private static int categoryNo;
+	private static int memberNo;
+}

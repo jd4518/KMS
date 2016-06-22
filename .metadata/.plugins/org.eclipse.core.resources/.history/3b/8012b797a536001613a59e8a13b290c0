@@ -1,0 +1,27 @@
+
+app.config(function($routeProvider) {
+	$routeProvider.when('/boardDetail/:BOARD_NO:categoryNo', {
+		templateUrl : 'boardDetail.do',
+		controller : 'boardDetailCtrl'
+	});
+});
+
+app.controller('boardDetailCtrl',function($scope, $http, $routeParams){
+
+	$scope.board = {};
+	$scope.categoryName = [];
+	$scope.cName = {};
+	$scope.categoryName = $scope.$parent.menu.category;
+	$scope.boardDetail = function(){
+		var ajax = $http.get("/Project/board/boardDetail/"+$routeParams.BOARD_NO+$routeParams.categoryNo+"x.do",{
+		});
+		
+		ajax.then(function(value){
+			$scope.board = value.data;
+		},function(reason){
+			alert("error");
+		});
+	}
+	$scope.boardDetail();
+		
+});

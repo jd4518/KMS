@@ -1,0 +1,39 @@
+package com.project.member.service;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.project.member.dao.MemberDao;
+import com.project.member.model.Member;
+
+@Service
+public class MemberLoginService implements UserDetailsService{
+
+	static Log log = LogFactory.getLog(MemberLoginService.class);
+	@Autowired
+	private MemberDao memberDao;
+	
+	
+	
+
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Member member = memberDao.selectMemberDetail(username);	
+		
+		Collection<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
+	     roles.add(new SimpleGrantedAuthority("ROLE_USER"));	
+	     UserDetails user = new User(username, member.getMemberPassword(), roles);
+		
+		return userDetails;
+	}
+	
+	
+}

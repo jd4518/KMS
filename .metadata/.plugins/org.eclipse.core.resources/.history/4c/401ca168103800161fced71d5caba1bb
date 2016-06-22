@@ -1,0 +1,41 @@
+package com.project.member.service;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.project.member.dao.MemberDao;
+import com.project.member.model.Member;
+import com.project.member.model.MemberDetail;
+
+@Service
+public class MemberLoginService implements AuthenticationProvider{
+
+	static Log log = LogFactory.getLog(MemberLoginService.class);
+	@Autowired
+	private MemberDao memberDao;
+	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		return authentication.equals(UsernamePasswordAuthenticationToken.class);
+	}
+	public boolean supports(Class<?> authentication) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+
+	
+	
+}

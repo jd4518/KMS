@@ -1,0 +1,76 @@
+package com.project.board.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.project.board.model.Board;
+import com.project.board.service.BoardListService;
+import com.project.category.service.CategoryService;
+import com.project.menu.service.MenuService;
+import com.project.util.Pagination;
+
+@Controller
+@RequestMapping(value = "/board")
+public class BoardController {
+
+	@Autowired
+	MenuService menuService;
+
+	@Autowired
+	CategoryService categoryService;
+	
+	@Autowired
+	BoardListService boardService;
+
+	@RequestMapping(value = "/boardMain.do")
+	public String getBoardMainView() {
+
+		return "board/boardMain";
+	}
+
+	@RequestMapping(value = "/bMain.do")
+	public String getBMainView() {
+
+		return "board/bMain";
+	}
+
+	@RequestMapping(value = "/boardList.do")
+	public String getNoticeBoardListView() {
+
+		return "board/boardList";
+	}
+	
+	@RequestMapping(value = "/boardDetail.do")
+	public String getNoticeBoardDetailView() {
+
+		return "board/boardDetail";
+	}
+
+	@RequestMapping(value = "/menu.do", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getMenu() {
+		 System.out.println("menu");
+		Map<String, Object> map = menuService.getMenu();
+
+		return map;
+	}
+
+	  @RequestMapping(value="/boardGet/{CATEOGRY_NO:[0-9]+}{pageNo:[0-9]+}x.do",method=RequestMethod.GET)
+	   @ResponseBody
+	   public Map<String, Object> getBoard(@PathVariable int CATEOGRY_NO,@PathVariable int pageNo){
+	      System.out.println("catecon"+CATEOGRY_NO);
+	      System.out.println("page"+pageNo);
+	      Map<String, Object> map = boardService.getBoardList(CATEOGRY_NO,pageNo);
+	      
+	      return map;
+	   }
+
+}

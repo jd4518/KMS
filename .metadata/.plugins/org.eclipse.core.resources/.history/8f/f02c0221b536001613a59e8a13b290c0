@@ -1,0 +1,9 @@
+package com.project.comment.dao;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class CommentDao {
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+}

@@ -1,0 +1,51 @@
+package com.project.member.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.stereotype.Service;
+
+import com.project.member.dao.MemberDao;
+import com.project.member.model.MemberDetail;
+
+@Service
+public class MemberLoginService implements AuthenticationProvider{
+
+	static Log log = LogFactory.getLog(MemberLoginService.class);
+	@Autowired
+	private MemberDao memberDao;
+	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		String user_id = (String)authentication.getPrincipal();		
+		String user_pw = (String)authentication.getCredentials();
+		
+		
+		
+		
+		List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
+        roles.add(new SimpleGrantedAuthority("ROLE_USER"));
+        
+        UsernamePasswordAuthenticationToken result = new UsernamePasswordAuthenticationToken(user_id, user_pw, roles);
+        result.setDetails(new MemberDetail(user_id, user_pw));
+		return result;
+        
+		
+	}
+	public boolean supports(Class<?> authentication) {
+		// TODO Auto-generated method stub
+		return authentication.equals(UsernamePasswordAuthenticationToken.class);
+	}
+	
+	
+
+	
+	
+}
